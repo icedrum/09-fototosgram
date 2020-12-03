@@ -14,10 +14,26 @@
 <ion-content color = "light">
 
   <!-- Refresher -->
+  <ion-content>
+    <ion-refresher slot="fixed" (ionRefresh)="recargar($event)">
+      <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+  </ion-content>
+
+
 
   <!-- Post -->
 <app-posts [posts]="posts"></app-posts>
 
   <!-- infinite scroll-->
+<ion-infinite-scroll threshold="100px" (ionInfinite)="siguientes($event)">
+  <ion-infinite-scroll-content
+    loadingSpinner="bubbles"
+    loadingText="Cargando mas posts...">
+  </ion-infinite-scroll-content>
+</ion-infinite-scroll>
+
+
+
 
 </ion-content>

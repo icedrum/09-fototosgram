@@ -12,32 +12,39 @@ export class Tab1Page implements OnInit{
 
   posts: Post[]=[]; 
 
-  mip: Post;
-  usu: Usuario;
-
   constructor(private postservice: PostsService) {}
 
   ngOnInit(){
+    this.siguientes(,false);
+  }
+
+  recargar(event){
+    //vacio post
+    this.posts=[];
+    this.siguientes(,true);
+  } 
+
+  siguientes(event? , pull: boooean=false ){
+
     this.postservice.getPost()
       .subscribe(res => {
-      //  this.posts.push(...res.posts);
-      //  console.log(res.posts[0].usuario);        
+        this.posts.push(...res.posts);        
+      
+
+
+        if (event){
+          event.target.complete(); 
+          if (res.posts.length===0){
+            event.target.disabled=true;
+            console.log('cero');
+            
+          }
+
+        }
       });
-      
-      
-
-
-        //this.mip._id ="1";
-        //this.mip.coords="0,0";
-        //this.mip.created="0101";
-        //this.mip.mensaje="Hoooola";
-        //this.usu.nombre="Daviiiiiid";
-        console.log(this.mip);
-        //this.mip.usuario=this.usu;
-        this.posts.push(this.mip);
-
-
-
   }
+
+
+
 
 }
