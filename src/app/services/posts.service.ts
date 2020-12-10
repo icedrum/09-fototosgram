@@ -21,8 +21,9 @@ export class PostsService {
         this.paginaPost=0;
     }
     this.paginaPost++;
+    console.log('Pag',this.paginaPost);
+    
     return this.http.get<RespuestaPosts>(`${URL}/posts?pagina=${this.paginaPost}`);
-
   } 
 
 

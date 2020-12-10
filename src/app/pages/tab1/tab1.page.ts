@@ -11,32 +11,39 @@ import { Usuario } from '../../interfaces/interfaces';
 export class Tab1Page implements OnInit{
 
   posts: Post[]=[]; 
+  habilitado: boolean=true;
 
   constructor(private postservice: PostsService) {}
 
   ngOnInit(){
-    this.siguientes(,false);
+    this.siguientes();
   }
 
   recargar(event){
-    //vacio post
-    this.posts=[];
-    this.siguientes(,true);
+    
+      //vacio post
+      this.posts=[];
+      this.habilitado=true;
+    this.siguientes(event,true); 
   } 
 
-  siguientes(event? , pull: boooean=false ){
+  siguientes(event? , pull: boolean=false ){
 
-    this.postservice.getPost()
+
+
+    this.postservice.getPost(pull)
       .subscribe(res => {
-        this.posts.push(...res.posts);        
+        this.posts.push(...res.posts);           
       
 
 
         if (event){
           event.target.complete(); 
           if (res.posts.length===0){
-            event.target.disabled=true;
+            //event.target.disabled=true;
+            this.habilitado=false;
             console.log('cero');
+            console.log('num:',res.posts.length);
             
           }
 
