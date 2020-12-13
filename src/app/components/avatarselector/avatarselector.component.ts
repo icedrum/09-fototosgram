@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-avatarselector',
@@ -9,7 +9,7 @@ export class AvatarselectorComponent implements OnInit {
 
 
   @Output()  avatarsel=new EventEmitter<string>();
-
+  @Input() avtarActual="av-1.png";
   avatarSlide ={
     slidesPerView: 3.5
   };
@@ -54,7 +54,17 @@ export class AvatarselectorComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() {
+
+      this.avatars.forEach (av=> av.seleccionado=false)
+
+      for (const avatat of this.avatars){
+        if (avatat.img===this.avtarActual){
+          avatat.seleccionado=true;
+          break;
+        }
+      }
+  }
 
   seleccionarAvatar(avatar ){
     this.avatars.forEach(av => av.seleccionado=false);

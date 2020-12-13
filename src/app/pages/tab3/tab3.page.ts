@@ -19,8 +19,7 @@ export class Tab3Page implements OnInit{
 
   ngOnInit(){
     this.usuario=this.ususerv.getUsuario();
-    console.log(this,this.usuario);
-    
+
   }
 
   logout(){
