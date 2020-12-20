@@ -6,7 +6,7 @@
 
     <ion-buttons slot="end">
       <ion-button (click)="crearPost()"
-                  [disabled]="Post.mensaje.length <1"
+                  [disabled]="Post.mensaje.length <1 || cargandoGelolializacion"
                   color="primary">
         Compartir
       </ion-button>
@@ -27,8 +27,10 @@
     <ion-list>
       <ion-item>
         <ion-label>Posición actual</ion-label>
-        <ion-spinner name="lines-small"></ion-spinner>
-        <ion-toggle slot="end"></ion-toggle>
+        <ion-spinner *ngIf="cargandoGelolializacion"  name="lines-small"></ion-spinner>
+        <ion-toggle [(ngModel)]="Post.posicion"
+                (ionChange)="geoLoca()"
+                 slot="end"></ion-toggle>
       </ion-item>
     </ion-list>
 

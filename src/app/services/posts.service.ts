@@ -44,7 +44,7 @@ export class PostsService {
       this.http.post(`${URL}/posts`,post,{headers})
       .subscribe ( resp => {
         
-        console.log(resp);
+        console.log('respuesta: ',resp);
         if (resp['ok']){
             this.nuevoPost.emit(resp['post']);
             resolve(true)
